@@ -1,23 +1,13 @@
-import '../App.css';
 import React from "react"
 
 function ProductRow(props){
 
 return(
-
-    <div>
-    {props.inStock 
-        ? (<tr>
-        <td>{props.name}</td>
-        <td>{props.price}</td>
-        </tr>) 
-        : (<tr  className="redbox">
-        <td>{props.name}</td>
-        <td>{props.price}</td>
-        </tr>)}
-    </div>
+    <tr>
+        <td className={props.products.inStock ? "" : "redbox"}>{props.products.name}</td>
+        <td className={props.products.inStock ? "" : "redbox"}>{props.products.price}</td>
+    </tr>
 )}
-
 
 
 export default ProductRow

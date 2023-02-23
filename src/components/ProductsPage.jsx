@@ -6,19 +6,25 @@ import { useState } from "react";
 
 function ProductsPage(props){
 
-const [newProducts, setNewProducts] = useState(props.products);
+const [products, setProducts] = useState(props.products);
+
+function searchFunction(searchText){
+    if(!searchText){
+        setProducts(props.products)
+    }
+    else {
+        const filteredProducts = props.products.filter((product)=>{
+            return product.name.toLowerCase().includes(searchText.toLowerCase())
+        })
+        setProducts(filteredProducts)
+        }
+    }
 
 return(
 <div className="App">
     <h1>IronStore</h1>
-    <div><SearchBar /></div>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-        </tr>
-        {newProducts.map((product) => {return <ProductTable product={product} />})}
-    </table>
+    <SearchBar searchFunction={searchFunction} />
+    <ProductTable products={products} />
 </div>
 )
 

@@ -1,13 +1,28 @@
 import React from "react"
+import {useState} from "react"
 
-function SearchBar(){
+
+
+
+function SearchBar(props){
+
+    const [searchText, setSearchText] = useState("")
+
+    function handleSearch(event){
+        setSearchText(event.target.value)
+        props.searchFunction(searchText)
+    }
+
     return(
         <div>
-        <p>Search Bar</p>
-        <input type="text" placeholder="Search.." />
-        <p>Only show products in stock</p>
+            <label htmlFor="">
+                <b>Search for product </b>
+                <input value={searchText} type="text" onChange={handleSearch} />
+            </label>
         </div>
     )
+
 }
+
 
 export default SearchBar
